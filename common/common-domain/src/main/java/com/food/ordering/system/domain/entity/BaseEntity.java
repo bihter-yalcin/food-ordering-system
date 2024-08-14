@@ -13,7 +13,7 @@ public abstract class BaseEntity<ID> {
         this.id = id;
     }
 
-    @Override //Because entities has unique identifiers
+    @Override/***Because entities has unique identifiers***/
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
