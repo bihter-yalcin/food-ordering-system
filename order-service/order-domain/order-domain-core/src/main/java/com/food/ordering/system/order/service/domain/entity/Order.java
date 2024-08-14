@@ -38,7 +38,7 @@ public class Order extends AggregateRoot<OrderId> {
         }
     }
 
-    private void validateOrder() {
+    public void validateOrder() {
         validateInitialOrder();
         validateTotalPrice();
         validateItemsPrice();
@@ -51,14 +51,15 @@ public class Order extends AggregateRoot<OrderId> {
         orderStatus = OrderStatus.PAID;
     }
 
-    public void paid(){
+    public void approve(){
         if(orderStatus != OrderStatus.PAID){
             throw new DomainException("Order is not correct state for paid operation");
         }
         orderStatus = OrderStatus.APPROVED;
     }
 
-    public void initCancel(){
+
+    public void initCancel(List<String> failureMessages){
         if(orderStatus != OrderStatus.PAID){
             throw new DomainException("Order is not correct state for initCancel operation");
         }
@@ -67,8 +68,7 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
 
-
-    public void cancel(){
+    public void cancel(List<String> failureMessages){
         if(!(orderStatus == OrderStatus.CANCELLING || orderStatus == OrderStatus.PENDING)){
             throw new DomainException("Order is not correct state for cancel operation");
         }
@@ -129,7 +129,6 @@ public class Order extends AggregateRoot<OrderId> {
         orderStatus = builder.orderStatus;
         failureMessages = builder.failureMessages;
     }
-
 
     public static final class Builder {
         private OrderId orderId;
