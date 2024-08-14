@@ -1,6 +1,7 @@
 package com.food.ordering.system.order.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.AggregateRoot;
+import com.food.ordering.system.domain.exception.DomainException;
 import com.food.ordering.system.domain.valueobject.*;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
@@ -41,6 +42,48 @@ public class Order extends AggregateRoot<OrderId> {
         validateInitialOrder();
         validateTotalPrice();
         validateItemsPrice();
+    }
+
+    public void pay(){
+        if(orderStatus != OrderStatus.PENDING){
+            throw new DomainException("Order is not correct state for pay operation");
+        }
+        orderStatus = OrderStatus.PAID;
+    }
+
+    public void paid(){
+        if(orderStatus != OrderStatus.PAID){
+            throw new DomainException("Order is not correct state for paid operation");
+        }
+        orderStatus = OrderStatus.APPROVED;
+    }
+
+    public void initCancel(){
+        if(orderStatus != OrderStatus.PAID){
+            throw new DomainException("Order is not correct state for initCancel operation");
+        }
+        orderStatus = OrderStatus.CANCELLING;
+        updateFailureMessages(failureMessages);
+    }
+
+
+
+    public void cancel(){
+        if(!(orderStatus == OrderStatus.CANCELLING || orderStatus == OrderStatus.PENDING)){
+            throw new DomainException("Order is not correct state for cancel operation");
+        }
+        orderStatus = OrderStatus.CANCELLED;
+        updateFailureMessages(failureMessages);
+    }
+
+    private void updateFailureMessages(List<String> failureMessages) {
+        if(this.failureMessages != null && failureMessages != null){
+            this.failureMessages.addAll(failureMessages.stream().filter(message-> !message.isEmpty()).toList());
+        }
+
+        if(this.failureMessages == null){
+            this.failureMessages = failureMessages;
+        }
     }
 
 
