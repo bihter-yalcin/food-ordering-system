@@ -1,6 +1,5 @@
-package com.food.ordering.system.order.service.domain.ports;
+package com.food.ordering.system.order.service.domain;
 
-import com.food.ordering.system.order.service.domain.OrderDomainService;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
@@ -12,8 +11,8 @@ import com.food.ordering.system.order.service.domain.ports.output.repository.Res
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component
 public class OrderCreateCommandHandler {
 
     private final OrderCreateHelper orderCreateHelper;
@@ -31,9 +30,9 @@ public class OrderCreateCommandHandler {
 
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
         OrderCreatedEvent orderCreatedEvent = orderCreateHelper.persistOrder(createOrderCommand);
-        log.info("Order Created!");
+        log.info("Order Created");
         orderCreatedPaymentRequestMessagePublisher.publish(orderCreatedEvent);
-        return orderDataMapper.orderSavedResultToCreateOrderResponse(orderCreatedEvent.getOrder());
+        return orderDataMapper.orderSavedResultToCreateOrderResponse(orderCreatedEvent.getOrder(),"Order Created");
     }
 
 

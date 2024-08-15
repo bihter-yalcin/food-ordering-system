@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Slf4j
-public class OrderDomainServiceImp implements OrderDomainService {
+public class OrderDomainServiceImpl implements OrderDomainService {
 
     private static final String UTC = "UTC";
     @Override

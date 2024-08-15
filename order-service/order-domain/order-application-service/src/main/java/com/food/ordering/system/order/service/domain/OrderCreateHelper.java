@@ -1,4 +1,4 @@
-package com.food.ordering.system.order.service.domain.ports;
+package com.food.ordering.system.order.service.domain;
 
 import com.food.ordering.system.order.service.domain.OrderDomainService;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
@@ -18,8 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
+
 @Slf4j
+@Component
 public class OrderCreateHelper {
     private final OrderDomainService orderDomainService;
     private final OrderRepository orderRepository;
