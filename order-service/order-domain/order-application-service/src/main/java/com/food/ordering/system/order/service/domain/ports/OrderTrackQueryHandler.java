@@ -9,6 +9,7 @@ import com.food.ordering.system.order.service.domain.ports.output.repository.Ord
 import com.food.ordering.system.order.service.domain.valueobject.TrackingId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -24,10 +25,11 @@ public class OrderTrackQueryHandler {
         this.orderDataMapper = orderDataMapper;
     }
 
+    @Transactional(readOnly = true)
     public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
         Optional<Order> order = orderRepository.findByTrackingId(new TrackingId(trackOrderQuery.getOrderTrackingId()));
         if (order.isEmpty()) {
-            throw new OrderDomainException("");
+            throw new OrderNotFoundException("Could not found order");
         }
         return orderDataMapper.toTrackOrderResponse(order.get());
     }
