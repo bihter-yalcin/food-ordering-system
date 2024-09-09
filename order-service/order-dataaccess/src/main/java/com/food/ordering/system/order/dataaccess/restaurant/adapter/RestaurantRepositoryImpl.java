@@ -1,6 +1,7 @@
 package com.food.ordering.system.order.dataaccess.restaurant.adapter;
 
-import com.food.ordering.system.order.dataaccess.restaurant.entity.RestaurantEntity;
+
+import com.food.ordering.system.dataaccess.restaurant.entity.RestaurantEntity;
 import com.food.ordering.system.order.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
 import com.food.ordering.system.order.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
@@ -27,4 +28,6 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
         //TODO OPTIONAL WITH :: ???
         return restaurantEntities.map(restaurantDataAccessMapper::restaurantEntityToRestaurant);
     }
+
+
 }

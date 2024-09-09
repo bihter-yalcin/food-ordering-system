@@ -1,4 +1,4 @@
-package com.food.ordering.system.order.dataaccess.restaurant.entity;
+package com.food.ordering.system.dataaccess.restaurant.entity;
 
 import lombok.*;
 
@@ -10,32 +10,32 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
-@Entity
-@Table(name = "order_restaurant_m_view", schema = "restaurant")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
-@IdClass(RestaurantEntity.class)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@IdClass(RestaurantEntityId.class)
+@Table(name = "order_restaurant_m_view", schema = "restaurant")
+@Entity
 public class RestaurantEntity {
 
     @Id
     private UUID restaurantId;
-
     @Id
     private UUID productId;
     private String restaurantName;
     private Boolean restaurantActive;
     private String productName;
     private BigDecimal productPrice;
+    private Boolean productAvailable;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestaurantEntity that = (RestaurantEntity) o;
-        return Objects.equals(restaurantId, that.restaurantId) && Objects.equals(productId, that.productId);
+        return restaurantId.equals(that.restaurantId) && productId.equals(that.productId);
     }
 
     @Override
