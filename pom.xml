@@ -11,6 +11,7 @@
         <module>customer-service</module>
         <module>payment-service</module>
         <module>restaurant-service</module>
+        <module>infrastructure/saga</module>
     </modules>
 
     <parent>
@@ -143,6 +144,11 @@
                 <artifactId>common-application</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>saga</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
