@@ -10,7 +10,11 @@
     </parent>
 
     <artifactId>restaurant-domain</artifactId>
-
+    <packaging>pom</packaging>
+    <modules>
+        <module>restaurant-application-service</module>
+        <module>restaurant-domain-core</module>
+    </modules>
 
 
 </project>
