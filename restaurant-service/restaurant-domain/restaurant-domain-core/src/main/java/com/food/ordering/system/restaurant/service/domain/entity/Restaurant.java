@@ -17,6 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Restaurant extends BaseEntity<RestaurantId> {
+    private RestaurantId restaurantId;
     private OrderApproval orderApproval;
     private boolean active;
     private final OrderDetail orderDetail;
