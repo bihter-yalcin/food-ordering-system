@@ -16,7 +16,7 @@ import com.food.ordering.system.order.service.domain.outbox.scheduler.payment.Pa
 import com.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.food.ordering.system.saga.SagaStatus;
 import com.food.ordering.system.saga.SagaStep;
-import com.foodordering.system.outbox.OutboxStatus;
+import com.food.ordering.system.outbox.OutboxStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

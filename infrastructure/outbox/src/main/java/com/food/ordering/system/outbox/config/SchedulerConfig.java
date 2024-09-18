@@ -1,4 +1,4 @@
-package com.foodordering.system.outbox.config;
+package com.food.ordering.system.outbox.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

@@ -1,4 +1,4 @@
-package com.foodordering.system.outbox;
+package com.food.ordering.system.outbox;
 
 public interface OutboxScheduler {
 
