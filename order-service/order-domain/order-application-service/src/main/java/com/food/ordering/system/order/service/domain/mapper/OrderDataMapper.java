@@ -64,9 +64,9 @@ public class OrderDataMapper {
                 .build();
     }
 
-   public Customer customerModelToCustomer(CustomerModel customerModel) {
+    public Customer customerModelToCustomer(CustomerModel customerModel) {
         return new Customer(new CustomerId(UUID.fromString(customerModel.getId())),
-                customerModel.getUsername(),
+                customerModel.getUserName(),
                 customerModel.getFirstName(),
                 customerModel.getLastName());
     }
