@@ -1,9 +1,6 @@
 package com.food.ordering.system.order.dataaccess.customer.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,9 +12,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "order_customer_m_view", schema = "customers")
-        public class CustomerEntity{
-        @Id
-        private UUID id;
+@Builder
+@Table(name = "customers")
+public class CustomerEntity {
+    @Id
+    private UUID id;
+    private String userName;
+    private String firstName;
+    private String lastName;
 
-        }
+}
